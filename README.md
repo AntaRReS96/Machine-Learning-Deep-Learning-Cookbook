@@ -1,4 +1,4 @@
-# 📚 Machine Learning & Deep Learning Cookbook 🇬🇧/🇵🇱
+# 📚 Machine Learning & Deep Learning Cookbook 🇬🇧
 
 This repository is my collection of Machine Learning and Deep Learning projects and implementations. 
 It’s inspired by the book **"Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow"** by Aurélien Géron 
@@ -93,7 +93,7 @@ This repository includes educational implementations inspired by "Hands-On Machi
 
 ---
 
-# 🇵🇱 Machine Learning & Deep Learning Cookbook 📚
+# 📚 Machine Learning & Deep Learning Cookbook 🇵🇱
 
 To repozytorium jest kolekcją projektów i implementacji z zakresu uczenia maszynowego i głębokiego uczenia. 
 Inspiracją do pracy była książka **"Uczenie maszynowe z użyciem Scikit-Learn, Keras i TensorFlow"** autorstwa Auréliena Gérona 

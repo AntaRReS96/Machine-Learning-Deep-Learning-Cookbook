@@ -63,7 +63,8 @@ class Snake:
 
     def is_collided(self, block=None):
         """Sprawdza, czy wąż uderzył w siebie lub ścianę."""
-        block = block or self.head
+        if block is None:
+            block = self.head
         
         if block[0] < 0 or block[0] >= WIN_WIDTH or block[1] < 0 or block[1] >= WIN_NN_HEIGHT:
             return True

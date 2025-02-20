@@ -4,7 +4,7 @@
 ![Nauka AI](img/game_learning.gif)
 
 ### Neural Network Visualization / Wizualizacja Sieci Neuronowej
-![Sieć Neuronowa](img/neural_network.gif)
+![Sieć Neuronowa](img/neural_network.png)
 
 ---
 

@@ -5,6 +5,7 @@ from config import BLOCK_SIZE, WIN_NN_WIDTH, WIN_NN_HEIGHT, DISPLAY_SPLIT, \
 
 class GameDisplay:
     def __init__(self, width=WIN_NN_WIDTH, height=WIN_NN_HEIGHT):
+        """Inicjalizacja okna gry."""
         pygame.init()
         self.width = width
         self.height = height
@@ -29,7 +30,7 @@ class GameDisplay:
         offset_x = DISPLAY_SPLIT
         for i, block in enumerate(snake.snake_elements):
             color = SNAKE_HEAD_COLOR if i == 0 else SNAKE_COLOR
-            pygame.draw.rect(self.display, color, pygame.Rect(block.x + offset_x, block.y, BLOCK_SIZE, BLOCK_SIZE))
+            pygame.draw.rect(self.display, color, pygame.Rect(block[0] + offset_x, block[1], BLOCK_SIZE, BLOCK_SIZE))
 
     def draw_apple(self, apple):
         """Rysowanie jabłka na planszy"""
@@ -108,6 +109,6 @@ class GameDisplay:
         
         self.draw_weights(nn_model, neuron_positions)
         
-        self.draw_neuron_circles(activations, neuron_positions, radius=5)
+        self.draw_neuron_circles(activations, neuron_positions, radius=7)
 
         pygame.display.flip()

@@ -19,10 +19,10 @@ class GameDisplay:
     def draw_snake(self, snake):
         """Rysowanie węża na planszy."""
         pygame.draw.rect(self.display, SNAKE_HEAD_COLOR, pygame.Rect(
-            snake.snake_elements[0].x, snake.snake_elements[0].y, BLOCK_SIZE, BLOCK_SIZE))
+            snake.snake_elements[0][0], snake.snake_elements[0][1], BLOCK_SIZE, BLOCK_SIZE))
         for block in snake.snake_elements[1:]:
             pygame.draw.rect(self.display, SNAKE_COLOR, pygame.Rect(
-                block.x, block.y, BLOCK_SIZE, BLOCK_SIZE))
+                block[0], block[1], BLOCK_SIZE, BLOCK_SIZE))
 
     def draw_apple(self, apple):
         """Rysowanie jabłka na planszy."""

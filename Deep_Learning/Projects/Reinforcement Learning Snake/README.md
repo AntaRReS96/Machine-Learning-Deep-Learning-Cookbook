@@ -2,8 +2,8 @@
 
 This project demonstrates an AI learning to play a game through reinforcement learning. It includes two key elements:
 
-1. **Game Learning Process** – A visualization of the AI improving its gameplay over time.
-2. **Neural Network Visualization** – A representation of the AI's neural network structure and activation patterns.
+1. **Game Learning Process** – A visualization of the AI improving its gameplay over time. (train_agent.py)
+2. **Neural Network Visualization** – A representation of the AI's neural network structure and activation patterns. (run_nn.py)
 
 ## Preview
 
@@ -19,8 +19,8 @@ This project demonstrates an AI learning to play a game through reinforcement le
 
 Ten projekt przedstawia proces nauki gry przez sztuczną inteligencję przy użyciu uczenia ze wzmocnieniem. Zawiera dwa kluczowe elementy:
 
-1. **Proces Nauki Gry** – Wizualizacja pokazująca, jak AI doskonali swoją rozgrywkę.
-2. **Wizualizacja Sieci Neuronowej** – Reprezentacja struktury i wzorców aktywacji sieci neuronowej AI.
+1. **Proces Nauki Gry** – Wizualizacja pokazująca, jak AI doskonali swoją rozgrywkę. (train_agent.py)
+2. **Wizualizacja Sieci Neuronowej** – Reprezentacja struktury i wzorców aktywacji sieci neuronowej AI. (run_nn.py)
 
 ## Podgląd
 

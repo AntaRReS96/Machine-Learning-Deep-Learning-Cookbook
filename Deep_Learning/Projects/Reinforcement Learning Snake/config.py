@@ -25,7 +25,7 @@ MAX_MEMORY = 100_000
 BATCH_SIZE = 64
 LR = 0.001
 
-EPOCHS = 100
+EPOCHS = 1000
 
 SAVE_CHECKPOINTS = [10, 20, 25] + list(range(50, EPOCHS+1, 25))
 SAVE_DIR = "saved_models"

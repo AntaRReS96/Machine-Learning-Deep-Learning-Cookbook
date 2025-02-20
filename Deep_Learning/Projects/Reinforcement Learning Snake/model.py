@@ -7,7 +7,7 @@ def make_model(input_shape, hidden_size, output_size):
                            input_shape=input_shape),
         keras.layers.Dense(hidden_size, activation="relu"),
         keras.layers.Dense(hidden_size, activation="relu"),
-        keras.layers.Dense(output_size, activation="tanh")
+        keras.layers.Dense(output_size, activation="softmax")
     ])
 
     model.build(input_shape=(None, 11))

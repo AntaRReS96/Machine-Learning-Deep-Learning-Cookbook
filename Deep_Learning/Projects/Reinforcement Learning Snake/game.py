@@ -14,44 +14,39 @@ class Direction(Enum):
     UP = 3
     DOWN = 4
 
-Block = namedtuple("Block", "x, y")
-
 
 class Snake:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.head = Block(self.x, self.y)
+        self.head = (self.x, self.y)
         self.snake_elements = [
             self.head,
-            Block(self.head.x - BLOCK_SIZE, self.head.y),
-            Block(self.head.x - 2 * BLOCK_SIZE, self.head.y)
+            (self.head[0] - BLOCK_SIZE, self.head[1]),
+            (self.head[0] - 2 * BLOCK_SIZE, self.head[1])
         ]
         self.current_direction = Direction.RIGHT
 
     def update(self, action):
-        """Aktualizacja ruchu węża na podstawie akcji.
-        Oczekiwany format akcji: [góra, dół, lewo, prawo] jako wektor one-hot.
-        Jeśli wybrany kierunek jest przeciwny do aktualnego, wąż kontynuuje ruch w aktualnym kierunku.
         """
-        
-        directions = [Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT]
-        
-        idx = np.argmax(action)
-        new_direction = directions[idx]
+        Aktualizacja ruchu węża.
+        Oczekiwany format akcji: [skręt w lewo, jazda prosto, skręt w prawo].
+        """
+        directions = [Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.UP]
+        current_idx = directions.index(self.current_direction)
+        action_idx = np.argmax(action)
 
-        
-        if (self.current_direction == Direction.UP and new_direction == Direction.DOWN) or \
-           (self.current_direction == Direction.DOWN and new_direction == Direction.UP) or \
-           (self.current_direction == Direction.LEFT and new_direction == Direction.RIGHT) or \
-           (self.current_direction == Direction.RIGHT and new_direction == Direction.LEFT):
-            new_direction = self.current_direction
+        if action_idx == 0:  # skręt w lewo
+            new_idx = (current_idx - 1) % 4
+        elif action_idx == 2:  # skręt w prawo
+            new_idx = (current_idx + 1) % 4
+        else:  # jazda prosto
+            new_idx = current_idx
 
-        self.current_direction = new_direction
+        self.current_direction = directions[new_idx]
 
-        
-        new_head_x = self.head.x
-        new_head_y = self.head.y
+        new_head_x = self.head[0]
+        new_head_y = self.head[1]
         if self.current_direction == Direction.RIGHT:
             new_head_x += BLOCK_SIZE
         elif self.current_direction == Direction.LEFT:
@@ -61,19 +56,19 @@ class Snake:
         elif self.current_direction == Direction.UP:
             new_head_y -= BLOCK_SIZE
 
-        self.head = Block(new_head_x, new_head_y)
+        self.head = (new_head_x, new_head_y)
         self.snake_elements.insert(0, self.head)
 
     def is_collided(self, block=None):
         """Sprawdza, czy wąż uderzył w siebie lub ścianę."""
         if block is None:
             block = self.head
-        if block in self.snake_elements[1:] or block.x < 0 or block.x >= WIN_WIDTH or block.y < 0 or block.y >= WIN_HEIGHT:
+        if block in self.snake_elements[1:] or block[0] < 0 or block[0] >= WIN_WIDTH or block[1] < 0 or block[1] >= WIN_HEIGHT:
             return True
         return False
     
     def get_distance_from_apple(self, apple):
-        return np.sqrt((self.head.x - apple.x)**2 + (self.head.y - apple.y)**2)
+        return np.sqrt((self.head[0] - apple.x)**2 + (self.head[1] - apple.y)**2)
 
 class Apple:
     def __init__(self, game):
@@ -86,7 +81,7 @@ class Apple:
             (x, y) for x in range(0, WIN_WIDTH, BLOCK_SIZE)
             for y in range(0, WIN_HEIGHT, BLOCK_SIZE)
         ]
-        occupied_positions = {(block.x, block.y) for block in self.game.snake.snake_elements}
+        occupied_positions = {(block[0], block[1]) for block in self.game.snake.snake_elements}
         free_positions = list(set(all_positions) - occupied_positions)
 
         if not free_positions:
@@ -129,7 +124,7 @@ class SnakeGameAI:
             reward -= 100
             return self._get_state(), reward, self.game_over, self.score
 
-        if self.snake.head.x == self.apple.x and self.snake.head.y == self.apple.y:
+        if self.snake.head[0] == self.apple.x and self.snake.head[1] == self.apple.y:
             self.score += 1
             reward += 10
             self.apple.change_pos()
@@ -147,48 +142,52 @@ class SnakeGameAI:
         return self._get_state(), reward, self.game_over, self.score
 
     def _get_state(self):
-        snake_head = self.snake.snake_elements[0]
+        """
+        Zwraca stan gry jako wektor, gdzie uwzględnione są:
+          - niebezpieczeństwo (kolizja) przy ruchu prosto, w prawo, w lewo,
+          - aktualny kierunek ruchu (4 zmienne binarne),
+          - pozycja jabłka względem głowy (czy jabłko jest w lewo, w prawo, powyżej, poniżej).
+        """
+        head = self.snake.snake_elements[0]
+        clock_wise = [Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.UP]
+        idx = clock_wise.index(self.snake.current_direction)
+        # Określenie kierunków relatywnych
+        front_dir = self.snake.current_direction
+        right_dir = clock_wise[(idx + 1) % 4]
+        left_dir = clock_wise[(idx - 1) % 4]
 
-        block_left = Block(snake_head.x - BLOCK_SIZE, snake_head.y)
-        block_right = Block(snake_head.x + BLOCK_SIZE, snake_head.y)
-        block_up = Block(snake_head.x, snake_head.y - BLOCK_SIZE)
-        block_down = Block(snake_head.x, snake_head.y + BLOCK_SIZE)
+        # Funkcja pomocnicza do obliczania pozycji bloku dla danego kierunku
+        def move_point(point, direction):
+            x, y = point
+            if direction == Direction.RIGHT:
+                x += BLOCK_SIZE
+            elif direction == Direction.LEFT:
+                x -= BLOCK_SIZE
+            elif direction == Direction.DOWN:
+                y += BLOCK_SIZE
+            elif direction == Direction.UP:
+                y -= BLOCK_SIZE
+            return (x, y)
 
-        is_direction_left = self.snake.current_direction == Direction.LEFT
-        is_direction_right = self.snake.current_direction == Direction.RIGHT
-        is_direction_up = self.snake.current_direction == Direction.UP
-        is_direction_down = self.snake.current_direction == Direction.DOWN
+        front_block = move_point(head, front_dir)
+        right_block = move_point(head, right_dir)
+        left_block = move_point(head, left_dir)
 
         state = [
-            
-            (is_direction_left and self.snake.is_collided(block_left)) or
-            (is_direction_right and self.snake.is_collided(block_right)) or
-            (is_direction_up and self.snake.is_collided(block_up)) or
-            (is_direction_down and self.snake.is_collided(block_down)),
-
-            
-            (is_direction_left and self.snake.is_collided(block_up)) or
-            (is_direction_right and self.snake.is_collided(block_down)) or
-            (is_direction_up and self.snake.is_collided(block_right)) or
-            (is_direction_down and self.snake.is_collided(block_left)),
-
-            
-            (is_direction_left and self.snake.is_collided(block_down)) or
-            (is_direction_right and self.snake.is_collided(block_up)) or
-            (is_direction_up and self.snake.is_collided(block_left)) or
-            (is_direction_down and self.snake.is_collided(block_right)),
-
-            
-            is_direction_left,
-            is_direction_right,
-            is_direction_up,
-            is_direction_down,
-
-            
-            self.apple.x < snake_head.x,  
-            self.apple.x > snake_head.x,  
-            self.apple.y < snake_head.y,  
-            self.apple.y > snake_head.y  
+            # Zagrożenia relatywne: czy kolizja przy ruchu prosto, w prawo, w lewo?
+            self.snake.is_collided(front_block),
+            self.snake.is_collided(right_block),
+            self.snake.is_collided(left_block),
+            # Aktualny kierunek ruchu (jako wartości binarne)
+            int(self.snake.current_direction == Direction.LEFT),
+            int(self.snake.current_direction == Direction.RIGHT),
+            int(self.snake.current_direction == Direction.UP),
+            int(self.snake.current_direction == Direction.DOWN),
+            # Położenie jabłka względem głowy (względem układu współrzędnych)
+            int(self.apple.x < head[0]),  # jabłko jest po lewej
+            int(self.apple.x > head[0]),  # jabłko jest po prawej
+            int(self.apple.y < head[1]),  # jabłko jest powyżej
+            int(self.apple.y > head[1])   # jabłko jest poniżej
         ]
 
         return np.array(state, dtype=int)

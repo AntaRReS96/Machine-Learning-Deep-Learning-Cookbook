@@ -25,7 +25,7 @@ class Agent:
         self.gamma = 0.95
         self.memory = deque(maxlen=MAX_MEMORY)
         self.model = make_model(
-            input_shape=[11], hidden_size=64, output_size=4)
+            input_shape=[11], hidden_size=64, output_size=3)
         self.loss_fn = keras.losses.MeanSquaredError()
         self.optimizer = keras.optimizers.Adam(learning_rate=LR)
 
@@ -35,10 +35,10 @@ class Agent:
         else:
             self.epsilon = self.epsilon_min
 
-        new_action = [0, 0, 0, 0]
+        new_action = [0, 0, 0]
 
         if np.random.rand() < self.epsilon:
-            action_choice = np.random.randint(0, 4)
+            action_choice = np.random.randint(0, 3)
             new_action[action_choice] = 1
         else:
             Q_values = self.model.predict(state[np.newaxis], verbose=0)

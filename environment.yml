@@ -1,0 +1,16 @@
+name: mldl-cookbook
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy==1.26.4
+  - pip
+  - pip:
+    - tensorflow==2.10.0
+    - tensorboard==2.10.0
+    - pygame==2.6.0
+    - scikit-learn 
+    - matplotlib
+    - pandas
+    - seaborn

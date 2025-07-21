@@ -2,7 +2,7 @@
 
 This repository is my collection of Machine Learning and Deep Learning projects and implementations. 
 It's inspired by the book **"Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow"** by Aurélien Géron 
-and enriched with additional resources from online platforms such as YouTube, internet articles, and support from Large Language Models (ChatGPT 4o/GitHub Copilot).
+and enriched with additional resources from online platforms such as YouTube, internet articles, and support from Large Language Models.
 
 The initial spark of inspiration came from a colleague who shared his own project portfolio at work, motivating me to create this repository to document my learning journey and showcase my skills.
 
@@ -46,32 +46,6 @@ Here's what you'll find in this repository:
 - Projects inspired by examples from online communities, educational resources, and personal curiosity.
 
 This repository serves both as a reference for my studies and as a professional portfolio to showcase my growing experience. ✨
-
----
-
-## 📁 Repository Structure
-
-```
-Machine-Learning-Deep-Learning-Cookbook/
-├── Machine_Learning/
-│   ├── Classification/
-│   ├── Regression/
-│   ├── Clustering/
-│   ├── Dimensionality_Reduction/
-│   ├── Ensemble_Methods/
-│   ├── Model_Selection/
-│   ├── Time_Series/
-│   ├── Unsupervised_Learning/
-│   └── Projects/
-├── Deep_Learning/
-│   ├── Neural_Networks/
-│   ├── Convolutional_Networks/
-│   ├── Recurrent_Networks/
-│   ├── Autoencoders_and_GANs/
-│   ├── Reinforcement_Learning/
-│   └── Projects/
-└── LangChain_AI/
-```
 
 ---
 
@@ -181,10 +155,10 @@ WIP
 
 ## 📖 Resources
 
-- **📖 Book**: [Hands-On Machine Learning](https://github.com/ageron/handson-ml3)
+- **📖 Book**: [Hands-On Machine Learning]
 - **🛠️ Tools**: Numpy, Pandas, Matplotlib, Scikit-Learn, TensorFlow, Keras
 - **🔹 Additional Resources**: Educational videos from YouTube and articles from the web
-- **🤖 AI Assistance**: ChatGPT 4o and GitHub Copilot for code development and learning
+- **🤖 AI Assistance**: ChatGPT o4-mini-high and GitHub Copilot/Cursor for code development and learning
 
 ---
 
@@ -199,7 +173,7 @@ This repository includes educational implementations inspired by "Hands-On Machi
 To repozytorium jest kolekcją projektów i implementacji z zakresu uczenia maszynowego i głębokiego uczenia. 
 Inspiracją do pracy była książka **"Uczenie maszynowe z użyciem Scikit-Learn, Keras i TensorFlow"** autorstwa Auréliena Gérona 
 oraz zasoby internetowe, w tym filmy na YouTube i artykuły z sieci. 
-W realizacji projektów wspierały mnie modele językowe(ChatGPT 4o/GitHub Copilot).
+W realizacji projektów wspierały mnie modele językowe(ChatGPT o4-mini-high/GitHub Copilot/Cursor).
 
 Pierwszym impulsem do stworzenia tego repozytorium było portfolio mojego kolegi, które pokazał mi w pracy, motywując mnie do realizacji podobnego projektu dokumentującego moją wiedzę.
 
@@ -243,32 +217,6 @@ Znajdziesz tutaj:
 - Projekty inspirowane zasobami online, społecznościami edukacyjnymi oraz osobistą ciekawością.
 
 Repozytorium służy jako osobisty podręcznik oraz element mojego portfolio. ✨
-
----
-
-## 📁 Struktura Repozytorium
-
-```
-Machine-Learning-Deep-Learning-Cookbook/
-├── Machine_Learning/
-│   ├── Classification/
-│   ├── Regression/
-│   ├── Clustering/
-│   ├── Dimensionality_Reduction/
-│   ├── Ensemble_Methods/
-│   ├── Model_Selection/
-│   ├── Time_Series/
-│   ├── Unsupervised_Learning/
-│   └── Projects/
-├── Deep_Learning/
-│   ├── Neural_Networks/
-│   ├── Convolutional_Networks/
-│   ├── Recurrent_Networks/
-│   ├── Autoencoders_and_GANs/
-│   ├── Reinforcement_Learning/
-│   └── Projects/
-└── LangChain_AI/
-```
 
 ---
 
@@ -350,22 +298,7 @@ Machine-Learning-Deep-Learning-Cookbook/
 
 ## 🔗 LangChain AI
 
-Kompleksowa kolekcja implementacji i eksperymentów LangChain:
-
-- **01** - Wprowadzenie do LangChain (`01_wprowadzenie_do_langchain.ipynb`)
-- **02** - Podstawy Modeli LLM (`02_llm_models_podstawy.ipynb`)
-- **03** - Ładowarki Dokumentów (`03_document_loaders.ipynb`)
-- **04** - Dzielenie Tekstu (`04_text_splitters.ipynb`)
-- **05** - Podstawy Embeddingów (`05_embeddings_basics.ipynb`)
-- **06** - Magazyny Wektorowe (`06_vector_stores.ipynb`)
-- **07** - Wyszukiwanie i RAG (`07_retrieval_rag.ipynb`)
-- **08** - Łańcuchy i Prompty (`08_chains_prompts.ipynb`)
-- **09** - Pamięć i Konwersacje (`09_memory_conversation.ipynb`)
-- **10** - Agenci i Narzędzia (`10_agents_tools.ipynb`)
-- **11** - Język Wyrażeń LangChain (`11_langchain_expression_language.ipynb`)
-- **12** - Streaming i Async (`12_streaming_async.ipynb`)
-- **13** - Callbacki i Monitoring (`13_callbacks_monitoring.ipynb`)
-- **Bonus** - Generator Rymów AABB po Polsku (`rymy_aabb_po_polsku.ipynb`)
+WIP
 
 ---
 
@@ -393,10 +326,10 @@ Kompleksowa kolekcja implementacji i eksperymentów LangChain:
 
 ## 📖 Zasoby
 
-- **📖 Książka**: [Uczenie maszynowe z użyciem Scikit-Learn, Keras i TensorFlow](https://github.com/ageron/handson-ml3)
+- **📖 Książka**: [Uczenie maszynowe z użyciem Scikit-Learn, Keras i TensorFlow]
 - **🛠️ Narzędzia**: Numpy, Pandas, Matplotlib, Scikit-Learn, TensorFlow, Keras
 - **🔹 Dodatkowe Zasoby**: Filmy edukacyjne z YouTube i artykuły z sieci
-- **🤖 Wsparcie AI**: ChatGPT 4o i GitHub Copilot w rozwoju kodu i nauce
+- **🤖 Wsparcie AI**: ChatGPT o4-mini-high i GitHub Copilot/Cursor w rozwoju kodu i nauce
 
 ---
 
